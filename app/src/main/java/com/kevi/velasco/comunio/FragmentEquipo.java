@@ -42,38 +42,42 @@ public class FragmentEquipo extends Fragment {
 
 
         equipoViewModdel.getEquipoUsuario().observe(getViewLifecycleOwner(), jugadoresFichados -> {
+
+            valorTotal = 0;
+            mediaEquipo = 0;
+
+
+
+            int contDefensas = 0;
+
             for (Jugador j : jugadoresFichados) {
-                if (j.getPosicion().equals("portero")) {
+                if (j.getPosicion().equalsIgnoreCase("portero")) {
                     iPortero.setImageResource(j.getFoto());
-
-                } else if ((j.getPosicion().equals("centrocampista"))) {
-                    iDelantero.setImageResource(jugadoresFichados.get(4).getFoto());
-                } else if ((j.getPosicion().equals("centrocampista"))) {
-
+                } else if (j.getPosicion().equalsIgnoreCase("defensa")) {
+                    if (contDefensas == 0) {
+                        iDefensa1.setImageResource(j.getFoto());
+                        contDefensas++;
+                    } else {
+                        iDefensa2.setImageResource(j.getFoto());
+                    }
+                } else if (j.getPosicion().equalsIgnoreCase("centrocampista")) {
                     iCentroCampista.setImageResource(j.getFoto());
-
-                } else if ((j.getPosicion().equals("delantero"))) {
-
-                    iCentroCampista.setImageResource(j.getFoto());
-
-                } else {
-
-                    iDefensa1.setImageResource(jugadoresFichados.get(1).getFoto());
-                    iDefensa2.setImageResource(jugadoresFichados.get(2).getFoto());
-
-
+                } else if (j.getPosicion().equalsIgnoreCase("delantero")) {
+                    iDelantero.setImageResource(j.getFoto());
                 }
 
                 valorTotal += j.getValorMercado();
                 mediaEquipo += j.getMedia();
-                mediaEquipo = mediaEquipo / jugadoresFichados.size();
+            }
 
+            if (jugadoresFichados.size() > 0) {
+                mediaEquipo = mediaEquipo / jugadoresFichados.size();
             }
 
             tValor.setText(String.valueOf(valorTotal));
             tMedia.setText(String.valueOf(mediaEquipo));
-
         });
+
 
 
         return view;

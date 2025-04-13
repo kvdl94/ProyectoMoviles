@@ -23,20 +23,20 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="397dp"
-        android:layout_height="104dp"
+        android:layout_width="664dp"
+        android:layout_height="108dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118">
+        app:layout_constraintVertical_bias="0.254">
 
         <ImageView
             android:id="@+id/imageViewMercado"
-            android:layout_width="105dp"
+            android:layout_width="133dp"
             android:layout_height="98dp"
             android:src="@drawable/mercado" />
 
@@ -65,14 +65,15 @@
 
     <ImageView
         android:id="@+id/imageViewEscudoSelecc"
-        android:layout_width="249dp"
-        android:layout_height="236dp"
+        android:layout_width="159dp"
+        android:layout_height="127dp"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.534"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/escudo" />
 
     <androidx.fragment.app.FragmentContainerView

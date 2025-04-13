@@ -17,7 +17,7 @@ public class DAO {
     }
 
     static ArrayList<Jugador> obtenerTodosLosJugadores() {
-
+        jugadores.clear();
             jugadores.add(new Jugador("Virgil van Dijk", "Defensa", 91, 85, R.drawable.vandijk));
             jugadores.add(new Jugador("Rúben Dias", "Defensa", 89, 75, R.drawable.rubendias));
             jugadores.add(new Jugador("Antonio Rüdiger", "Defensa", 87, 60, R.drawable.rudiger));

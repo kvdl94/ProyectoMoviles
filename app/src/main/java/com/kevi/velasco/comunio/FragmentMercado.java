@@ -30,7 +30,10 @@ public class FragmentMercado extends Fragment {
     TextView tPresupuesto, tFichados;
     int fichados = 0;
     EquipoViewModdel equipoViewModdel;
-
+    int porteroFichado=0;
+    int defensasFichados=0;
+    int centroCampistaFichado=0;
+    int delanteroFichado=0;
 
     public FragmentMercado() {
         // Required empty public constructor
@@ -74,23 +77,56 @@ public class FragmentMercado extends Fragment {
                         .setPositiveButton("comprar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+
                                 if (equipoUsuario.contains(jugadorSeleccionado)) {
-                                    Toast.makeText(view.getContext(), "el jugador ya está en el equipo", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(view.getContext(), "El jugador ya está en el equipo", Toast.LENGTH_SHORT).show();
                                 } else if (equipoUsuario.size() >= 5) {
-                                    Toast.makeText(view.getContext(), "no puedes tener más de 5 jugadores", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(view.getContext(), "No puedes tener más de 5 jugadores", Toast.LENGTH_SHORT).show();
                                 } else if (presupuesto < jugadorSeleccionado.getValorMercado()) {
-                                    Toast.makeText(view.getContext(), "no tienes presupuesto suficiente", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(view.getContext(), "No tienes presupuesto suficiente", Toast.LENGTH_SHORT).show();
                                 } else {
+
+                                    if(jugadorSeleccionado.getPosicion().equalsIgnoreCase("Portero")) {
+                                        if(porteroFichado >= 1){
+                                            Toast.makeText(view.getContext(), "Ya tienes un portero", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        } else {
+                                            porteroFichado++;
+                                        }
+                                    }
+                                    else if(jugadorSeleccionado.getPosicion().equalsIgnoreCase("Defensa")) {
+                                        if(defensasFichados >= 2){
+                                            Toast.makeText(view.getContext(), "Ya tienes dos defensas", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        } else {
+                                            defensasFichados++;
+                                        }
+                                    }
+                                    else if(jugadorSeleccionado.getPosicion().equalsIgnoreCase("Centrocampista")) {
+                                        if(centroCampistaFichado >= 1){
+                                            Toast.makeText(view.getContext(), "Ya tienes un centrocampista", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        } else {
+                                            centroCampistaFichado++;
+                                        }
+                                    }
+                                    else if(jugadorSeleccionado.getPosicion().equalsIgnoreCase("Delantero")) {
+                                        if(delanteroFichado >= 1){
+                                            Toast.makeText(view.getContext(), "Ya tienes un delantero", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        } else {
+                                            delanteroFichado++;
+                                        }
+                                    }
+
                                     equipoUsuario.add(jugadorSeleccionado);
                                     presupuesto -= jugadorSeleccionado.getValorMercado();
                                     tPresupuesto.setText(String.valueOf(presupuesto));
-                                    Toast.makeText(view.getContext(), "jugador comprado", Toast.LENGTH_SHORT).show();
-                                    fichados += 1;
+                                    Toast.makeText(view.getContext(), "Jugador comprado", Toast.LENGTH_SHORT).show();
+                                    fichados++;
                                     tFichados.setText(String.valueOf(fichados));
                                     equipoViewModdel.setEquipoUsuario(equipoUsuario);
                                 }
-
-
                             }
                         })
                         .setNegativeButton("cancelar", null)
@@ -107,95 +143,79 @@ public class FragmentMercado extends Fragment {
 
                 if (cPt.isChecked()) {
                     for (Jugador j : jugadores) {
-                        if (j.getPosicion().contains("Portero")) {
+                        if (j.getPosicion().equalsIgnoreCase("Portero")) {
                             jugadoresFiltrados.add(j);
-
-
                         }
-
                     }
-                    adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
-                    lv.setAdapter(adaptador);
-
                 } else {
-                    adaptador = new Adapatador(jugadores, view.getContext());
-                    lv.setAdapter(adaptador);
+                    jugadoresFiltrados.addAll(jugadores);
                 }
 
+                adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
+                lv.setAdapter(adaptador);
             }
         });
-
 
         cDef.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 jugadoresFiltrados.clear();
+
                 if (cDef.isChecked()) {
                     for (Jugador j : jugadores) {
-                        if (j.getPosicion().contains("Defensa")) {
+                        if (j.getPosicion().equalsIgnoreCase("Defensa")) {
                             jugadoresFiltrados.add(j);
-                            //donde se muestra?
-
                         }
-
                     }
-                    adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
-                    lv.setAdapter(adaptador);
                 } else {
-                    adaptador = new Adapatador(jugadores, view.getContext());
-                    lv.setAdapter(adaptador);
+                    jugadoresFiltrados.addAll(jugadores);
                 }
 
+                adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
+                lv.setAdapter(adaptador);
             }
         });
-
 
         cCc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 jugadoresFiltrados.clear();
+
                 if (cCc.isChecked()) {
                     for (Jugador j : jugadores) {
-                        if (j.getPosicion().contains("Centrocampista")) {
+                        if (j.getPosicion().equalsIgnoreCase("Centrocampista")) {
                             jugadoresFiltrados.add(j);
-                            //donde se muestra?
-
                         }
-
                     }
-                    adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
-                    lv.setAdapter(adaptador);
                 } else {
-                    adaptador = new Adapatador(jugadores, view.getContext());
-                    lv.setAdapter(adaptador);
+                    jugadoresFiltrados.addAll(jugadores);
                 }
 
+                adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
+                lv.setAdapter(adaptador);
             }
         });
-
 
         cDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 jugadoresFiltrados.clear();
+
                 if (cDel.isChecked()) {
                     for (Jugador j : jugadores) {
-                        if (j.getPosicion().contains("Delantero")) {
+                        if (j.getPosicion().equalsIgnoreCase("Delantero")) {
                             jugadoresFiltrados.add(j);
-                            //donde se muestra?
-
                         }
-
                     }
-                    adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
-                    lv.setAdapter(adaptador);
                 } else {
-                    adaptador = new Adapatador(jugadores, view.getContext());
-                    lv.setAdapter(adaptador);
+                    jugadoresFiltrados.addAll(jugadores);
                 }
 
+                adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
+                lv.setAdapter(adaptador);
             }
         });
+
 
 
         return view;

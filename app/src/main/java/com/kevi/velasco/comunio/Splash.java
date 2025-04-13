@@ -23,6 +23,8 @@ StringBuilder sb = new StringBuilder();
         sb.append("* Puedes fichar 5 jugadores\n");
         sb.append("* Tienes un presupuesto asignado que no puedes sobrepasar\n");
         sb.append("* Cada jugador tiene su media y su valor asignado\n");
+        sb.append("* Puedes fichar: 1 PORTERO 2 DEFENSAS 1 CENTROCAMPISTAS 1 DELANTERO\n");
+
         tReglas.setText(sb);
 
         new Handler().postDelayed(new Runnable() {
@@ -32,7 +34,7 @@ StringBuilder sb = new StringBuilder();
 
                 Intent intent = new Intent(Splash.this,MainActivity.class);
                 startActivity(intent);
-
+                finish();
 
 
             }

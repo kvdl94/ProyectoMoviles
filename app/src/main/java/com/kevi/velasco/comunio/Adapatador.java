@@ -58,8 +58,25 @@ public class Adapatador extends BaseAdapter {
         ImageView fotoJugador= view.findViewById(R.id.imageViewJuagorListView);
         fotoJugador.setImageResource(jugadores.get(i).getFoto());
 
+        ImageView corazon= view.findViewById(R.id.imageViewCorazon);
+        corazon = view.findViewById(R.id.imageViewCorazon);
 
+        Jugador jugador = jugadores.get(i);
 
+        if (jugador.isFavorito()) {
+            corazon.setImageResource(R.drawable.ic_corazon_lleno);
+        } else {
+            corazon.setImageResource(R.drawable.ic_corazon_vacio);
+        }
+
+        corazon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean nuevoEstado = !jugador.isFavorito();
+                jugador.setFavorito(nuevoEstado);
+                notifyDataSetChanged();
+            }
+        });
 
         return view;
     }

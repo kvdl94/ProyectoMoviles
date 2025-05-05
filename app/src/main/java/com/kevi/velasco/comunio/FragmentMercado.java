@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,11 @@ public class FragmentMercado extends Fragment {
     int defensasFichados=0;
     int centroCampistaFichado=0;
     int delanteroFichado=0;
+
+
+
+
+
 
     public FragmentMercado() {
         // Required empty public constructor
@@ -216,7 +222,25 @@ public class FragmentMercado extends Fragment {
             }
         });
 
+        cFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                jugadoresFiltrados.clear();
 
+                if (cFav.isChecked()) {
+                    for (Jugador j : jugadores) {
+                        if (j.isFavorito()) {
+                            jugadoresFiltrados.add(j);
+                        }
+                    }
+                } else {
+                    jugadoresFiltrados.addAll(jugadores);
+                }
+
+                adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
+                lv.setAdapter(adaptador);
+            }
+        });
 
         return view;
     }

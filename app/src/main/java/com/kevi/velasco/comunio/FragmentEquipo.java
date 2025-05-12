@@ -82,4 +82,9 @@ public class FragmentEquipo extends Fragment {
 
         return view;
     }
+
+
+
+
+
 }

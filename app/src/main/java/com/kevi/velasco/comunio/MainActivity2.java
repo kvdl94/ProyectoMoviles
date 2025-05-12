@@ -16,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 public class MainActivity2 extends AppCompatActivity  {
-ImageView imagenEscudoSele,imageMercado, imagenPlantilla, imagenInfoEquipo;
+ImageView imagenEscudoSele,imageMercado, imagenPlantilla, imagenInfoEquipo, imagenCerrar;
 
 
 
@@ -31,6 +31,7 @@ ImageView imagenEscudoSele,imageMercado, imagenPlantilla, imagenInfoEquipo;
         imageMercado=findViewById(R.id.imageViewMercado);
         imagenPlantilla=findViewById(R.id.imageViewPlantilla);
         imagenInfoEquipo=findViewById(R.id.imageViewEquipo);
+        imagenCerrar=findViewById(R.id.imageViewCerrar);
 
         imageMercado.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,20 +58,25 @@ imagenPlantilla.setOnClickListener(new View.OnClickListener() {
 });
 
 
-imagenInfoEquipo.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentContainerView, new FragmentInfoEquipo())
-                .addToBackStack(null)
-                .commit();
+        imagenInfoEquipo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EscudoViewModel escudoViewModel = new ViewModelProvider(MainActivity2.this).get(EscudoViewModel.class);
+                escudoViewModel.setEscudoSeleccionado(escudoSeleccionado);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new FragmentInfoEquipo())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        imagenCerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishAffinity();
+            }
+        });
 
 
-    }
-});
 
-
-    }
-
-
-}
+}}

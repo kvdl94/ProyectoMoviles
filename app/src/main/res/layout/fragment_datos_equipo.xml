@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentDatosEquipo">
+
+
+    <ImageView
+        android:id="@+id/imageViewEscudoDatosEquipo"
+        android:layout_width="151dp"
+        android:layout_height="170dp"
+        android:src="@drawable/alcala_dos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001" />
+
+    <TextView
+        android:id="@+id/textViewNombreDatos"
+        android:layout_width="222dp"
+        android:layout_height="27dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toEndOf="@+id/imageViewEscudoDatosEquipo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <TextView
+        android:id="@+id/textViewLocalizacionDatos"
+        android:layout_width="226dp"
+        android:layout_height="31dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintStart_toEndOf="@+id/imageViewEscudoDatosEquipo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNombreDatos"
+        app:layout_constraintVertical_bias="0.019" />
+
+    <TextView
+        android:id="@+id/textViewEstadioDatosEquipo"
+        android:layout_width="227dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageViewEscudoDatosEquipo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLocalizacionDatos"
+        app:layout_constraintVertical_bias="0.017" />
+
+    <TextView
+        android:id="@+id/textViewDivisionDatosEquipo"
+        android:layout_width="233dp"
+        android:layout_height="26dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toEndOf="@+id/imageViewEscudoDatosEquipo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEstadioDatosEquipo"
+        app:layout_constraintVertical_bias="0.034" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

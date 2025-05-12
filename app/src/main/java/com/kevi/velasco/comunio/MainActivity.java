@@ -19,9 +19,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 ImageView fondo,escudo,next,atras;
-ArrayList<Integer> escudos;
+    ArrayList<Equipo> equipos;
 int posicion=0;
-int escudoSeleccionado;
 
 
 
@@ -29,7 +28,7 @@ int escudoSeleccionado;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        escudos = DAO.obtenerEscudos();
+        equipos = DAO.obtenerEquipos();
 
 
         next=findViewById(R.id.imageView2);
@@ -43,59 +42,49 @@ int escudoSeleccionado;
         fondo.setImageResource(R.drawable.fondo);
 
         escudo=findViewById(R.id.imageViewEscudo);
-
+        escudo.setImageResource(equipos.get(posicion).getImagenEscudo());
 
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (posicion>=escudos.size()-1){
+                if (posicion >= equipos.size() - 1) {
                     posicion = 0;
-
+                } else {
+                    posicion++;
                 }
-
-
-                posicion++;
-                escudo.setImageResource(escudos.get(posicion));
-
-
-
+                escudo.setImageResource(equipos.get(posicion).getImagenEscudo());
             }
         });
 
         atras.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View view) {
-                     if (posicion==0){
-                         posicion=escudos.size();
+            @Override
+            public void onClick(View view) {
+                if (posicion == 0) {
+                    posicion = equipos.size() - 1;
+                } else {
+                    posicion--;
+                }
+                escudo.setImageResource(equipos.get(posicion).getImagenEscudo());
+            }
+        });
 
-
-                     }
-                     posicion--;
-                     escudo.setImageResource(escudos.get(posicion));
-
-
+        escudo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int escudoSeleccionado = equipos.get(posicion).getImagenEscudo();
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                intent.putExtra("escudoSeleccionado", escudoSeleccionado);
+                startActivity(intent);
+            }
+        });
     }
-});
-
-escudo.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-         escudoSeleccionado = escudos.get(posicion);
-        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-        intent.putExtra("escudoSeleccionado", escudoSeleccionado);
-        startActivity(intent);
-
-
-
-    }
-});
 
 
 
 
 
-    }
+
 
 
 
@@ -115,6 +104,9 @@ escudo.setOnClickListener(new View.OnClickListener() {
             finishAffinity();
         }
         if (item.getItemId() == R.id.idLetra) {
+
+
+
 
         }
 

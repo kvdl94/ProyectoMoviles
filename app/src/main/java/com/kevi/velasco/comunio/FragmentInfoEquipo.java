@@ -13,9 +13,6 @@ public class FragmentInfoEquipo extends Fragment {
 
 
 
-    private String mParam1;
-    private String mParam2;
-
     public FragmentInfoEquipo() {
         // Required empty public constructor
     }

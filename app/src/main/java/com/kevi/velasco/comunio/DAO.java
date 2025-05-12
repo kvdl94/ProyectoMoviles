@@ -4,16 +4,19 @@ import java.util.ArrayList;
 
 public class DAO {
 
-    static ArrayList<Integer> escudos = new ArrayList<>();
-    static ArrayList<Jugador> jugadores = new ArrayList<>();
 
-    static ArrayList<Integer> obtenerEscudos() {
-        escudos.add(R.drawable.roma);
-        escudos.add(R.drawable.alcala_dos);
-        escudos.add(R.drawable.madrid);
-        escudos.add(R.drawable.milan);
-        escudos.add(R.drawable.arsenal);
-        return escudos;
+    static ArrayList<Jugador> jugadores = new ArrayList<>();
+    static ArrayList<Equipo> equipos = new ArrayList<>();
+
+    static ArrayList<Equipo> obtenerEquipos() {
+        equipos.clear();
+        equipos.add(new Equipo(1, "Roma", R.drawable.roma, "Roma", 1927, "Stadio Olimpico", "Serie A", R.raw.roma));
+        equipos.add(new Equipo(2, "RSD Alcala", R.drawable.alcala_dos, "Alcala de Henares", 1929, "Estadio Municipal", "Preferente",R.raw.rsdalcala));
+        equipos.add(new Equipo(3, "Real Madrid", R.drawable.madrid, "Madrid", 1902, "Santiago Bernabeu", "La Liga",R.raw.realmadrid));
+        equipos.add(new Equipo(4, "AC Milan", R.drawable.milan, "Milan", 1899, "San Siro", "Serie A",R.raw.milan));
+        equipos.add(new Equipo(5, "Arsenal", R.drawable.arsenal, "Londres", 1886, "Emirates Stadium", "Premier League",R.raw.arsenal));
+
+        return equipos;
     }
 
     static ArrayList<Jugador> obtenerTodosLosJugadores() {

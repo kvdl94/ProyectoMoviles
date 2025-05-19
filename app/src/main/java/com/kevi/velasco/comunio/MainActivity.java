@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -79,42 +80,6 @@ int posicion=0;
             }
         });
     }
-
-
-
-
-
-
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_toolbar,menu);
-
-
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.idCerrar){
-            finishAffinity();
-        }
-        if (item.getItemId() == R.id.idLetra) {
-
-
-
-
-        }
-
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
 
 
 

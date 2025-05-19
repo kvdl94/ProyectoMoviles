@@ -18,7 +18,7 @@ public class FragmentEquipo extends Fragment {
     EquipoViewModdel equipoViewModdel;
     ImageView iPortero, iDefensa1, iDefensa2, iCentroCampista, iDelantero;
     int valorTotal = 0;
-    TextView tValor, tMedia;
+    TextView tValor, tMedia ,tvalorEquipo, tMediaEquipo;
     int mediaEquipo;
 
 
@@ -39,7 +39,17 @@ public class FragmentEquipo extends Fragment {
         iDelantero = view.findViewById(R.id.imageViewDelantero);
         tValor = view.findViewById(R.id.textView2);
         tMedia = view.findViewById(R.id.textViewMediaEquipo);
+        tvalorEquipo=view.findViewById(R.id.textViewValorEquipo);
+        tMediaEquipo=view.findViewById(R.id.textView7);
+        LetraViewModel letraViewModel = new ViewModelProvider(requireActivity()).get(LetraViewModel.class);
+        letraViewModel.getTamanioLetra().observe(getViewLifecycleOwner(), nuevoTam -> {
 
+                tValor.setTextSize(nuevoTam);
+                tMedia.setTextSize(nuevoTam);
+                tvalorEquipo.setTextSize(nuevoTam);
+                tMediaEquipo.setTextSize(nuevoTam);
+
+        });
 
         equipoViewModdel.getEquipoUsuario().observe(getViewLifecycleOwner(), jugadoresFichados -> {
 

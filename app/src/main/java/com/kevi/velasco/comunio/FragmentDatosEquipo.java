@@ -30,7 +30,17 @@ public class FragmentDatosEquipo extends Fragment {
 
         EscudoViewModel escudoViewModel = new ViewModelProvider(requireActivity()).get(EscudoViewModel.class);
         EquipoViewModel equipoViewModel = new ViewModelProvider(requireActivity()).get(EquipoViewModel.class);
+        LetraViewModel letraViewModel = new ViewModelProvider(requireActivity()).get(LetraViewModel.class);
 
+
+        letraViewModel.getTamanioLetra().observe(getViewLifecycleOwner(), nuevoTam -> {
+
+                textViewNombre.setTextSize(nuevoTam);
+                textViewLocalizacion.setTextSize(nuevoTam);
+                textViewEstadio.setTextSize(nuevoTam);
+                textViewDivision.setTextSize(nuevoTam);
+
+        });
 
         escudoViewModel.getEscudoSeleccionado().observe(getViewLifecycleOwner(), escudo -> {
             ArrayList<Equipo> equipos = DAO.obtenerEquipos();

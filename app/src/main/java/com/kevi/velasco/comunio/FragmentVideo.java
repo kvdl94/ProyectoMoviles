@@ -50,7 +50,7 @@ public class FragmentVideo extends Fragment {
                 mediaController.setAnchorView(videoView);
                 videoView.setMediaController(mediaController);
 
-                // Reproducir
+
                 videoView.start();
             }
         });

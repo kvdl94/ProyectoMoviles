@@ -19,7 +19,7 @@ StringBuilder sb = new StringBuilder();
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash);
-    tReglas=findViewById(R.id.textViewReglas);
+        tReglas=findViewById(R.id.textViewReglas);
         sb.append("* Puedes fichar 5 jugadores\n");
         sb.append("* Tienes un presupuesto asignado que no puedes sobrepasar\n");
         sb.append("* Cada jugador tiene su media y su valor asignado\n");

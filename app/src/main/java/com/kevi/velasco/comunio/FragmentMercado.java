@@ -35,7 +35,7 @@ public class FragmentMercado extends Fragment {
     int defensasFichados=0;
     int centroCampistaFichado=0;
     int delanteroFichado=0;
-
+    int tamanioLetra=14;
 
 
 
@@ -61,10 +61,26 @@ public class FragmentMercado extends Fragment {
         tFichados = view.findViewById(R.id.textViewFichados);
         tFichados.setText(String.valueOf(fichados));
         equipoViewModdel = new ViewModelProvider(requireActivity()).get(EquipoViewModdel.class);
+        LetraViewModel letraViewModel = new ViewModelProvider(requireActivity()).get(LetraViewModel.class);
 
+        letraViewModel.getTamanioLetra().observe(getViewLifecycleOwner(), nuevoTam -> {
+
+                    adaptador.setTamanioLetra(nuevoTam);
+                    adaptador.notifyDataSetChanged();
+
+            cPt.setTextSize(nuevoTam);
+            cDef.setTextSize(nuevoTam);
+            cCc.setTextSize(nuevoTam);
+            cDel.setTextSize(nuevoTam);
+            cFav.setTextSize(nuevoTam);
+
+            tPresupuesto.setTextSize(nuevoTam);
+            tFichados.setTextSize(nuevoTam);
+
+        });
 
         lv = view.findViewById(R.id.listView);
-        adaptador = new Adapatador(jugadores, view.getContext());
+        adaptador = new Adapatador(jugadores, view.getContext(),tamanioLetra);
         lv.setAdapter(adaptador);
 
 
@@ -157,7 +173,7 @@ public class FragmentMercado extends Fragment {
                     jugadoresFiltrados.addAll(jugadores);
                 }
 
-                adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
+                adaptador = new Adapatador(jugadoresFiltrados, view.getContext(), tamanioLetra);
                 lv.setAdapter(adaptador);
             }
         });
@@ -177,7 +193,7 @@ public class FragmentMercado extends Fragment {
                     jugadoresFiltrados.addAll(jugadores);
                 }
 
-                adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
+                adaptador = new Adapatador(jugadoresFiltrados, view.getContext(),tamanioLetra);
                 lv.setAdapter(adaptador);
             }
         });
@@ -197,7 +213,7 @@ public class FragmentMercado extends Fragment {
                     jugadoresFiltrados.addAll(jugadores);
                 }
 
-                adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
+                adaptador = new Adapatador(jugadoresFiltrados, view.getContext(),tamanioLetra);
                 lv.setAdapter(adaptador);
             }
         });
@@ -217,7 +233,7 @@ public class FragmentMercado extends Fragment {
                     jugadoresFiltrados.addAll(jugadores);
                 }
 
-                adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
+                adaptador = new Adapatador(jugadoresFiltrados, view.getContext(),tamanioLetra);
                 lv.setAdapter(adaptador);
             }
         });
@@ -237,7 +253,7 @@ public class FragmentMercado extends Fragment {
                     jugadoresFiltrados.addAll(jugadores);
                 }
 
-                adaptador = new Adapatador(jugadoresFiltrados, view.getContext());
+                adaptador = new Adapatador(jugadoresFiltrados, view.getContext(),tamanioLetra);
                 lv.setAdapter(adaptador);
             }
         });

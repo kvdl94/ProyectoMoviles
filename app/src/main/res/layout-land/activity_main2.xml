@@ -36,8 +36,8 @@
 
         <ImageView
             android:id="@+id/imageViewMercado"
-            android:layout_width="133dp"
-            android:layout_height="98dp"
+            android:layout_width="191dp"
+            android:layout_height="94dp"
             android:src="@drawable/mercado" />
 
         <ImageView
@@ -54,12 +54,7 @@
             android:layout_weight="1"
             android:src="@drawable/escudo" />
 
-        <ImageView
-            android:id="@+id/imageViewCerrar"
-            android:layout_width="220dp"
-            android:layout_height="99dp"
-            android:layout_weight="1"
-            android:src="@drawable/cerrar" />
+
 
     </LinearLayout>
 

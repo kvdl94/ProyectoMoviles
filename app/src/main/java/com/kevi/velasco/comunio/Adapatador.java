@@ -10,14 +10,22 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Adapatador extends BaseAdapter {
-   ArrayList<Jugador> jugadores= DAO.obtenerTodosLosJugadores();
-   Context context;
 
-    public Adapatador(ArrayList<Jugador> jugadores, Context context) {
-        this.jugadores = jugadores;
-        this.context = context;
-    }
+    public class Adapatador extends BaseAdapter {
+        ArrayList<Jugador> jugadores;
+        Context context;
+        int tamanioLetra;
+
+        public Adapatador(ArrayList<Jugador> jugadores, Context context, int tamanioLetra) {
+            this.jugadores = jugadores;
+            this.context = context;
+            this.tamanioLetra = tamanioLetra;
+        }
+
+
+        public void setTamanioLetra(int tamanioLetra) {
+            this.tamanioLetra = tamanioLetra;
+        }
 
     @Override
     public int getCount() {
@@ -61,7 +69,21 @@ public class Adapatador extends BaseAdapter {
         ImageView corazon= view.findViewById(R.id.imageViewCorazon);
         corazon = view.findViewById(R.id.imageViewCorazon);
 
+
+        nombre.setTextSize(tamanioLetra);
+        posicion.setTextSize(tamanioLetra);
+        media.setTextSize(tamanioLetra);
+        valor.setTextSize(tamanioLetra);
+
+
+
+
         Jugador jugador = jugadores.get(i);
+
+
+
+
+
 
         if (jugador.isFavorito()) {
             corazon.setImageResource(R.drawable.ic_corazon_lleno);

@@ -59,6 +59,11 @@ public class MainActivity2 extends AppCompatActivity {
                     .commit();
         });
 
+        SharedPreferences sp = getSharedPreferences("letra", MODE_PRIVATE);
+        tamanio = sp.getInt("letra", 14); 
+
+        LetraViewModel letraViewModel = new ViewModelProvider(this).get(LetraViewModel.class);
+        letraViewModel.setTamanioLetra(tamanio);
 
     }
 

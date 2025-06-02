@@ -1,16 +1,18 @@
 package com.kevi.velasco.comunio;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class EscudoViewModel extends ViewModel {
-    private final MutableLiveData<Integer> escudoSeleccionado = new MutableLiveData<>();
 
-    public MutableLiveData<Integer> getEscudoSeleccionado() {
-        return escudoSeleccionado;
+    private final MutableLiveData<String> escudoSeleccionado = new MutableLiveData<>();
+
+    public void setEscudoSeleccionado(String nombreEquipo) {
+        escudoSeleccionado.setValue(nombreEquipo);
     }
 
-    public void setEscudoSeleccionado(int escudo) {
-        escudoSeleccionado.setValue(escudo);
+    public LiveData<String> getEscudoSeleccionado() {
+        return escudoSeleccionado;
     }
 }

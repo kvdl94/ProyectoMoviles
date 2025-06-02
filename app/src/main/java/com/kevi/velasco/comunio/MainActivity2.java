@@ -1,37 +1,44 @@
 package com.kevi.velasco.comunio;
 
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+
 public class MainActivity2 extends AppCompatActivity {
     ImageView imagenEscudoSele, imageMercado, imagenPlantilla, imagenInfoEquipo;
     int tamanio = 14;
-
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        int escudoSeleccionado = getIntent().getIntExtra("escudoSeleccionado", -5);
         imagenEscudoSele = findViewById(R.id.imageViewEscudoSelecc);
-        imagenEscudoSele.setImageResource(escudoSeleccionado);
         imageMercado = findViewById(R.id.imageViewMercado);
         imagenPlantilla = findViewById(R.id.imageViewPlantilla);
         imagenInfoEquipo = findViewById(R.id.imageViewEquipo);
+        Equipo equipo = (Equipo) getIntent().getSerializableExtra("equipo");
 
+
+        Picasso.get()
+                .load(equipo.getEscudoUrl())
+                .into(imagenEscudoSele);
 
         imageMercado.setOnClickListener(view -> {
             View fragmentContainer = findViewById(R.id.fragmentContainerView);
@@ -44,15 +51,21 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         imagenPlantilla.setOnClickListener(view -> {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainerView, new FragmentEquipo())
-                    .addToBackStack(null)
-                    .commit();
-        });
+            ArrayList<Jugador> equipoUsuario = new ViewModelProvider(this)
+                    .get(EquipoViewModdel.class).getEquipoUsuario().getValue();
 
+            if (equipoUsuario == null || equipoUsuario.size() < 5) {
+                Toast.makeText(this, "Completa tu equipo antes de continuar", Toast.LENGTH_SHORT).show();
+            } else {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new FragmentEquipo())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
         imagenInfoEquipo.setOnClickListener(view -> {
             EscudoViewModel escudoViewModel = new ViewModelProvider(MainActivity2.this).get(EscudoViewModel.class);
-            escudoViewModel.setEscudoSeleccionado(escudoSeleccionado);
+            escudoViewModel.setEscudoSeleccionado(equipo.getNombre());
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainerView, new FragmentInfoEquipo())
                     .addToBackStack(null)

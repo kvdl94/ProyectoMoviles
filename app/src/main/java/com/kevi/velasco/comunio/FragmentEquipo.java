@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 
@@ -62,18 +64,18 @@ public class FragmentEquipo extends Fragment {
 
             for (Jugador j : jugadoresFichados) {
                 if (j.getPosicion().equalsIgnoreCase("portero")) {
-                    iPortero.setImageResource(j.getFoto());
+                    Picasso.get().load(j.getImagenUrl()).into(iPortero);
                 } else if (j.getPosicion().equalsIgnoreCase("defensa")) {
                     if (contDefensas == 0) {
-                        iDefensa1.setImageResource(j.getFoto());
+                        Picasso.get().load(j.getImagenUrl()).into(iDefensa1);
                         contDefensas++;
                     } else {
-                        iDefensa2.setImageResource(j.getFoto());
+                        Picasso.get().load(j.getImagenUrl()).into(iDefensa2);
                     }
                 } else if (j.getPosicion().equalsIgnoreCase("centrocampista")) {
-                    iCentroCampista.setImageResource(j.getFoto());
+                    Picasso.get().load(j.getImagenUrl()).into(iCentroCampista);
                 } else if (j.getPosicion().equalsIgnoreCase("delantero")) {
-                    iDelantero.setImageResource(j.getFoto());
+                    Picasso.get().load(j.getImagenUrl()).into(iDelantero);
                 }
 
                 valorTotal += j.getValorMercado();

@@ -7,27 +7,17 @@ public class Jugador implements Serializable {
     private String posicion;
     private int media;
     private int valorMercado;
-    private int foto;
+    private String imagenUrl;
 
-    boolean favorito;
+    private boolean favorito;
 
-    public Jugador(String nombre, String posicion, int media, int valorMercado, int foto) {
+    public Jugador(String nombre, String posicion, int media, int valorMercado, String imagenUrl) {
         this.nombre = nombre;
         this.posicion = posicion;
         this.media = media;
         this.valorMercado = valorMercado;
-        this.foto = foto;
+        this.imagenUrl = imagenUrl;
     }
-
-    public Jugador(String nombre, String posicion, int media, int valorMercado, int foto, boolean favorito) {
-        this.nombre = nombre;
-        this.posicion = posicion;
-        this.media = media;
-        this.valorMercado = valorMercado;
-        this.foto = foto;
-        this.favorito = favorito;
-    }
-
 
     public boolean isFavorito() {
         return favorito;
@@ -36,6 +26,7 @@ public class Jugador implements Serializable {
     public void setFavorito(boolean favorito) {
         this.favorito = favorito;
     }
+
     public String getNombre() {
         return nombre;
     }
@@ -52,7 +43,7 @@ public class Jugador implements Serializable {
         return valorMercado;
     }
 
-    public int getFoto() {
-        return foto;
+    public String getImagenUrl() {
+        return imagenUrl;
     }
 }

@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class FragmentDatosEquipo extends Fragment {
@@ -42,11 +44,15 @@ public class FragmentDatosEquipo extends Fragment {
 
         });
 
-        escudoViewModel.getEscudoSeleccionado().observe(getViewLifecycleOwner(), escudo -> {
+        escudoViewModel.getEscudoSeleccionado().observe(getViewLifecycleOwner(), escudoNombre -> {
             ArrayList<Equipo> equipos = DAO.obtenerEquipos();
             for (Equipo equipo : equipos) {
-                if (equipo.getImagenEscudo() == escudo) {
-                    imageViewEscudo.setImageResource(equipo.getImagenEscudo());
+                if (equipo.getNombre().equalsIgnoreCase(escudoNombre)) {
+
+                    Picasso.get()
+                            .load(equipo.getEscudoUrl())
+                            .into(imageViewEscudo);
+
                     textViewNombre.setText("Nombre: " + equipo.getNombre());
                     textViewLocalizacion.setText("Localización: " + equipo.getLocalizacion());
                     textViewEstadio.setText("Estadio: " + equipo.getNombreEstadio());

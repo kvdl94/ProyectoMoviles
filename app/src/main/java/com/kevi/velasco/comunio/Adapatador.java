@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 
@@ -64,7 +66,9 @@ import java.util.ArrayList;
         valor.setText(String.valueOf(jugadores.get(i).getValorMercado()));
 
         ImageView fotoJugador= view.findViewById(R.id.imageViewJuagorListView);
-        fotoJugador.setImageResource(jugadores.get(i).getFoto());
+        Picasso.get()
+                .load(jugadores.get(i).getImagenUrl())
+                .into(fotoJugador);
 
         ImageView corazon= view.findViewById(R.id.imageViewCorazon);
         corazon = view.findViewById(R.id.imageViewCorazon);

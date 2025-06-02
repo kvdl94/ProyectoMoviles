@@ -11,7 +11,6 @@
         android:id="@+id/imageViewEscudoDatosEquipo"
         android:layout_width="151dp"
         android:layout_height="170dp"
-        android:src="@drawable/alcala_dos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

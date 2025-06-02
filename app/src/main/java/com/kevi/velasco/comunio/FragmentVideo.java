@@ -12,11 +12,7 @@ import android.view.ViewGroup;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentVideo#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class FragmentVideo extends Fragment {
 
 
@@ -41,8 +37,7 @@ public class FragmentVideo extends Fragment {
 
         equipoViewModel.getEquipoSeleccionado().observe(getViewLifecycleOwner(), equipo -> {
             if (equipo != null) {
-                String path = "android.resource://" + requireContext().getPackageName() + "/" + equipo.getVideo();
-                Uri uri = Uri.parse(path);
+                Uri uri = Uri.parse(equipo.getVideoUrl());
                 videoView.setVideoURI(uri);
 
 

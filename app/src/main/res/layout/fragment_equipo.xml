@@ -92,8 +92,9 @@
 
     <ImageView
         android:id="@+id/imageViewDelantero"
-        android:layout_width="103dp"
-        android:layout_height="144dp"
+        android:layout_width="108dp"
+        android:layout_height="110dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

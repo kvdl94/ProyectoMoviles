@@ -2,85 +2,90 @@ package com.kevi.velasco.comunio;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+import com.squareup.picasso.Picasso;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-ImageView fondo,escudo,next,atras;
-    ArrayList<Equipo> equipos;
-int posicion=0;
-
-
+    ImageView fondo, escudo, next, atras;
+    ArrayList<Equipo> equipos = new ArrayList<>();
+    int posicion = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        equipos = DAO.obtenerEquipos();
 
-
-        next=findViewById(R.id.imageView2);
+        next = findViewById(R.id.imageView2);
         next.setImageResource(R.drawable.siguiente);
 
-        atras=findViewById(R.id.imageViewAtras);
+        atras = findViewById(R.id.imageViewAtras);
         atras.setImageResource(R.drawable.anterior);
 
-
-        fondo=findViewById(R.id.imageView);
+        fondo = findViewById(R.id.imageView);
         fondo.setImageResource(R.drawable.fondo);
 
-        escudo=findViewById(R.id.imageViewEscudo);
-        escudo.setImageResource(equipos.get(posicion).getImagenEscudo());
+        escudo = findViewById(R.id.imageViewEscudo);
 
 
-        next.setOnClickListener(new View.OnClickListener() {
+        DAO.cargarDatosDesdeInternet(this, new DAO.Callback() {
             @Override
-            public void onClick(View view) {
+            public void onSuccess() {
+                equipos = DAO.obtenerEquipos();
+                if (!equipos.isEmpty()) {
+                    mostrarEscudoActual();
+                }
+            }
+
+            @Override
+            public void onError(Exception e) {
+            System.out.println("sdnjsdns");
+            }
+        });
+
+        next.setOnClickListener(view -> {
+            if (!equipos.isEmpty()) {
                 if (posicion >= equipos.size() - 1) {
                     posicion = 0;
                 } else {
                     posicion++;
                 }
-                escudo.setImageResource(equipos.get(posicion).getImagenEscudo());
+                mostrarEscudoActual();
             }
         });
 
-        atras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        atras.setOnClickListener(view -> {
+            if (!equipos.isEmpty()) {
                 if (posicion == 0) {
                     posicion = equipos.size() - 1;
                 } else {
                     posicion--;
                 }
-                escudo.setImageResource(equipos.get(posicion).getImagenEscudo());
+                mostrarEscudoActual();
             }
         });
 
-        escudo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int escudoSeleccionado = equipos.get(posicion).getImagenEscudo();
+        escudo.setOnClickListener(view -> {
+            if (!equipos.isEmpty()) {
+                Equipo equipoSeleccionado = equipos.get(posicion);
                 Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                intent.putExtra("escudoSeleccionado", escudoSeleccionado);
+                intent.putExtra("equipo", equipoSeleccionado);
                 startActivity(intent);
             }
         });
     }
 
+    private void mostrarEscudoActual() {
+        if (equipos.isEmpty()) return;
 
-
+        Equipo equipo = equipos.get(posicion);
+        Picasso.get()
+                .load(equipo.getEscudoUrl())
+                .into(escudo);
+    }
 }

@@ -79,10 +79,11 @@ public class FragmentMercado extends Fragment {
 
         });
 
+        jugadoresFiltrados.clear();
+        jugadoresFiltrados.addAll(jugadores);
         lv = view.findViewById(R.id.listView);
-        adaptador = new Adapatador(jugadores, view.getContext(),tamanioLetra);
+        adaptador = new Adapatador(jugadoresFiltrados, view.getContext(),tamanioLetra);
         lv.setAdapter(adaptador);
-
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
